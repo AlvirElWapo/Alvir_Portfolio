@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
+import {Icon} from "astro-icon/components";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
@@ -9,15 +10,17 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
   </div>
 
   <div class="mb-10 text-justify">
-    <b>Software Developer </b> with over 3 years of experience 
-    building web applications using open-source technologies such as 
-    Node.js, Docker, Vue.js, MySQL, among others.
-    As a ,<b>Software Engineer</b>, I specialize in programming logic 
-    and adopting emerging technologies. I led the development of projects 
-    focused on business management and process digitalization, significantly 
-    reducing the time required to complete tasks.
-    I have an advanced level of English and excel at collaborating within multicultural 
-    teams. I am eager to contribute to <b>innovative projects</b> that drive <b>technological impact</b>.
+    <b>Software Developer </b> with over 3 years of experience<br> 
+    building web applications using open-source technologies such as <br>
+    Node.js, Docker, Vue.js, MySQL, among others.<br>
+    <br>
+    As a ,<b>Software Engineer</b>, I specialize in programming logic <br>
+    and adopting emerging technologies. I led the development of projects <br>
+    focused on business management and process digitalization, significantly <br>
+    reducing the time required to complete tasks.<br>
+    <br>
+    I have an advanced level of English and excel at collaborating within multicultural <br>
+    teams. I am eager to contribute to <b>innovative projects</b> that drive <b>technological impact</b>.<br>
   </div>
 
   <div class="mb-5">
@@ -65,7 +68,7 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <ul class="list-disc mx-6 mb-10 grid gap-2">
     <li>
-      FIRST Certificate in English (Cambridge University, Toluca, Estado de México)
+      FIRST Certificate in English (Cambridge University)
       <br>Test Score: 181 (C1)
     </li>
     <li>
@@ -78,31 +81,74 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <div class="text-3xl w-full font-bold">Skills</div>
   </div>
 
-  <div class="text-1xl w-full font-bold">Lenguajes de Programación</div>
+  <div class="text-1xl w-full font-bold">Programming Languages</div>
   <ul class="list-disc md:columns-3 columns-2 mx-6">
-    <li>Javascript</li>
-    <li>Python</li>
-    <li>Java</li>
-    <li>C#</li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> JavaScript </span>
+      <Icon name="javascript" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Python </span>
+      <Icon name="python" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Java </span>
+      <Icon name="java" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> C# </span>
+      <Icon name="csharp" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Go </span>
+      <Icon name="golang" style="width: 20px; height: 20px;" />
+    </li>
   </ul>
   <br>
   <br>
   <div class="text-1xl w-full font-bold">Frameworks (Backend)</div>
   <ul class="list-disc md:columns-3 columns-2 mx-6">
-    <li>NodeJs</li>
-    <li>Django</li>
-    <li>ExpressJs</li>
-    <li>.NET Core</li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> NodeJs </span>
+      <Icon name="node_icon" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Django </span>
+      <Icon name="django" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Express</span>
+      <Icon name="expressJS" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> .Net Core</span>
+      <Icon name="net_core" style="width: 20px; height: 20px;" />
+    </li>
   </ul>
   <br>
   <br>
   <div class="text-1xl w-full font-bold">Frameworks (Frontend)</div>
   <ul class="list-disc md:columns-3 columns-2 mx-6">
-    <li>VueJs</li>
-    <li>React</li>
-    <li>AngularJs</li>
-    <li>Bootstrap</li>
-    <li>TailwindCSS</li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> VueJS </span>
+      <Icon name="vuejs" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> ReactJS </span>
+      <Icon name="reactjs" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Angular</span>
+      <Icon name="angular" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> Bootstrap </span>
+      <Icon name="bootstrap" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span> TailwindCSS</span>
+      <Icon name="tailwindcss" style="width: 20px; height: 20px;" />
+    </li>
   </ul>
 
 

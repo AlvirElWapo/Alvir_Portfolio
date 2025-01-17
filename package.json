@@ -18,6 +18,7 @@
     "@astrojs/starlight": "^0.31.0",
     "@astrojs/tailwind": "^5.0.3",
     "astro": "^4.0.2",
+    "astro-icon": "^1.1.5",
     "daisyui": "^4.4.10",
     "dayjs": "^1.11.9",
     "sharp": "^0.32.6",
