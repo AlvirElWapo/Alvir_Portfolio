@@ -1,13 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
-import {Icon} from "astro-icon/components";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import imported_image from "../assets/images/image_cv_updated.webp"; // Correct path
 ---
 
+
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
+
+  <div class="flex items-center justify-center ">
+  <div class="avatar transition ease-in-out hover:scale-[150%] block m-auto">
+    <div class="w-[8.5rem]">
+      <Image class="mask mask-circle" format="webp"  width={500} height={500} 
+      src={imported_image} alt="Profile image" />
+    </div>
+  </div>
+  </div>
+
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Profile</div>
   </div>
+
+
 
   <div class="mb-10 text-justify">
     <b>Software Developer </b> with over 3 years of experience<br> 
