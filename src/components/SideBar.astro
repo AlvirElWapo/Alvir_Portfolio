@@ -4,9 +4,13 @@ import { Image } from "astro:assets";
 import SideBarMenu from "./SideBarMenu.astro";
 const { sideBarActiveItemID } = Astro.props;
 
-// Get the current route
 const currentRoute = Astro.url.pathname;
+console.log(currentRoute);
 ---
+<script>
+  const currentRoute = window.location.pathname;
+</script>
+
 
 <div class="drawer-side z-40">
   <label for="my-drawer" class="drawer-overlay"></label>
