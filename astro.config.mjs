@@ -12,8 +12,11 @@ export default defineConfig({
   site: 'https://astrofy-template.netlify.app',
   integrations: [mdx(), sitemap(), tailwind(), 
     icon({
-      iconDir: "src/icons",
+        iconDir: "src/icons",
     })
-  ]
+  ],
+    image: {
+        service: passthroughImageService(),
+    },
     // starlight()]
 });
