@@ -10,68 +10,68 @@ const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Andrés Alvir</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Cybersecurity Enthusiast.</div>
-    <div class="py-2">
-      <text class="text-lg">
-      </text>
+    <div class="pb-12 mt-5">
+        <div class="text-xl py-1">Hey there 👋</div>
+        <div class="text-5xl font-bold">I'm Andrés Alvir</div>
+        <div class="text-3xl py-3 font-bold">Software Engineer and Cybersecurity Enthusiast.</div>
+        <div class="py-2">
+            <text class="text-lg">
+            </text>
+        </div>
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-start">
+            <a href="https://github.com/AlvirElWapo/" target="_blank" class="btn btn-outline">
+                Check out my github!
+            </a>
+            <a href="https://alvirportfolio.netlify.app/cv/" target="_blank" class="btn btn-outline">
+                Check out my CV!
+            </a>
+        </div>
     </div>
-    <div class="mt-8">
-      <a href="https://github.com/AlvirElWapo/" target="_blank" class="btn btn-outline ml-5">
-        Check out my github!
-      </a>
-      <a href="https://alvirportfolio.netlify.app/cv/" target="_blank" class="btn btn-outline ml-5">
-        Check out my CV!
-      </a>
+
+    <!--   <div> -->
+    <!--     <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div> -->
+    <!--   </div> -->
+    <!---->
+    <!--   <HorizontalCard -->
+    <!--     title="Demo Project 1" -->
+    <!--     img="/post_img.webp" -->
+    <!--     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." -->
+    <!--     url="#" -->
+    <!--     badge="NEW" -->
+    <!--   /> -->
+    <!--   <div class="divider my-0"></div> -->
+    <!--   <HorizontalCard -->
+    <!--     title="Demo Project 2" -->
+    <!--     img="/post_img.webp" -->
+    <!--     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." -->
+    <!--     url="#" -->
+    <!--   /> -->
+    <!--   <div class="divider my-0"></div> -->
+    <!--   <HorizontalCard -->
+    <!--     title="Demo Project 3" -->
+    <!--     img="/post_img.webp" -->
+    <!--     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." -->
+    <!--     url="#" -->
+    <!--     badge="FOSS" -->
+    <!--   /> -->
+    <!---->
+    <div>
+        <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
     </div>
-  </div>
 
-<!--   <div> -->
-<!--     <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div> -->
-<!--   </div> -->
-<!---->
-<!--   <HorizontalCard -->
-<!--     title="Demo Project 1" -->
-<!--     img="/post_img.webp" -->
-<!--     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." -->
-<!--     url="#" -->
-<!--     badge="NEW" -->
-<!--   /> -->
-<!--   <div class="divider my-0"></div> -->
-<!--   <HorizontalCard -->
-<!--     title="Demo Project 2" -->
-<!--     img="/post_img.webp" -->
-<!--     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." -->
-<!--     url="#" -->
-<!--   /> -->
-<!--   <div class="divider my-0"></div> -->
-<!--   <HorizontalCard -->
-<!--     title="Demo Project 3" -->
-<!--     img="/post_img.webp" -->
-<!--     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." -->
-<!--     url="#" -->
-<!--     badge="FOSS" -->
-<!--   /> -->
-<!---->
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
+    {
     last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+    <>
+    <HorizontalCard
+    title={post.data.title}
+    img={post.data.heroImage}
+    desc={post.data.description}
+    url={"/blog/" + createSlug(post.data.title, post.slug)}
+    target="_self"
+    badge={post.data.badge}
+    />
+    <div class="divider my-0" />
+        </>
+        ))
+        }
 </BaseLayout>
