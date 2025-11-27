@@ -13,25 +13,27 @@ const currentRoute = Astro.url.pathname;
 
 <div class="drawer-side z-40">
   <label for="my-drawer" class="drawer-overlay"></label>
-  <aside class="px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col">
+  <aside class="px-2 pt-2 h-auto min-h-full w-[15rem] bg-base-200 text-base-content flex flex-col">
     <!-- Only show the avatar if the route is NOT '/cv' -->
     {currentRoute !== "/cv" && (
-      <div class="w-fit mx-auto mt-5 mb-6">
-        <a href="/">
-          <div class="avatar transition ease-in-out hover:scale-[102%] block m-auto">
-            <div class="w-[8.5rem]">
-              <Image
-                class="mask mask-circle"
-                format="webp"
-                width={300}
-                height={300}
-                src="/image_cv_updated.webp"
-                alt="Profile image"
-              />
-            </div>
+    <div class="mx-auto mt-5 mb-6">
+      <a href="/">
+
+        <div class="avatar transition ease-in-out hover:scale-[125%] hover-coin-spin block m-auto">
+          <div class="w-[12rem] h-[12rem]">
+            <Image
+            class="rounded-lg object-cover w-full h-full"
+            format="webp"
+            width={300}
+            height={300}
+            src="/portfolio_pp_alt.png"
+            alt="Profile image"
+            />
           </div>
-        </a>
-      </div>
+        </div>
+
+      </a>
+    </div>
     )}
     <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
     <SideBarFooter />

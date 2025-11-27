@@ -1,26 +1,87 @@
 ---
 const { sideBarActiveItemID } = Astro.props;
-const activeClass = "bg-base-300"; // For primary color replace with `active` class
+const activeClass = "bg-base-300"; 
+const currentRoute = Astro.url.pathname;
+const isActive = (path) => currentRoute === path;
+
 ---
 
 <ul class="menu grow shrink menu-md overflow-y-auto">
-    <li><a class="py-3 text-base" id="home" href="/">Home</a></li>
-    <!-- <li><a class="py-3 text-base" id="projects" href="/projects">Projects</a></li> -->
-    <!-- <li><a class="py-3 text-base" id="services" href="/services">Services</a></li> -->
-    <!-- <li><a class="py-3 text-base" id="store" href="/store">Store</a></li> -->
-    <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
-    <li><a class="py-3 text-base" id="blog" href="/blog/">Blog</a></li>
-    <li>
-        <a
-            class="py-3 text-base"
-            href="mailto:andresalvir13@gmail.com"
-            target="_blank"
-            referrerpolicy="no-referrer-when-downgrade">Contact</a
-        >
-    </li>
-</ul>
+  <li>
+    <a
+      href="/"
+      class={`py-3 text-base flex items-center gap-3 group
+        ${isActive("/") ? "bg-base-300" : ""}`}
+    >
+      <span class={`nf nf-fa-home text-2xl transition-transform duration-150
+        ${isActive("/") ? "scale-100" : "group-hover:scale-150"}`}
+      ></span>
 
-<script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass }}>
-const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem && activeItemElem.classList.add(activeClass);
-</script>
+      <span class={`transition-all duration-300
+        ${isActive("/") 
+          ? "opacity-100 translate-x-0 scale-125" 
+          : "opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
+        }`}
+      >
+        Home
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="/cv"
+      class={`py-3 text-base flex items-center gap-3 group
+        ${isActive("/cv") ? "bg-base-300" : ""}`}
+    >
+      <span class={`nf nf-md-file_document_multiple text-2xl transition-transform duration-150
+        ${isActive("/cv") ? "scale-125" : "group-hover:scale-125"}`}
+      ></span>
+
+      <span class={`transition-all duration-300
+        ${isActive("/cv")
+          ? "opacity-100 translate-x-0"
+          : "opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
+        }`}
+      >
+        CV
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="/blog/"
+      class={`py-3 text-base flex items-center gap-3 group
+        ${isActive("/blog/") ? "bg-base-300" : ""}`}
+    >
+      <span class={`nf nf-md-book_account text-2xl transition-transform duration-150
+        ${isActive("/blog/") ? "scale-125" : "group-hover:scale-125"}`}
+      ></span>
+
+      <span class={`transition-all duration-300
+        ${isActive("/blog/")
+          ? "opacity-100 translate-x-0"
+          : "opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
+        }`}
+      >
+        Blog
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="mailto:andresalvir13@gmail.com"
+      target="_blank"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="py-3 text-base flex items-center gap-3 group"
+    >
+      <span class="nf nf-md-mailbox_open_up text-2xl transition-transform duration-150 group-hover:scale-125"></span>
+
+      <span class="opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+        Contact
+      </span>
+    </a>
+  </li>
+</ul>
