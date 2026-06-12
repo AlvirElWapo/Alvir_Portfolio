@@ -1,0 +1,28 @@
+---
+import { getLangFromUrl, getOppositePath } from "../i18n/utils";
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const pathname = Astro.url.pathname;
+
+// Resolve the path for each locale of the current page.
+const esPath = lang === "es" ? pathname : getOppositePath(pathname, "en");
+const enPath = lang === "en" ? pathname : getOppositePath(pathname, "es");
+---
+
+<div class="px-3 py-3 flex items-center justify-center gap-2 text-sm">
+  <a
+    href={esPath}
+    class={`font-bold transition-opacity hover:opacity-100 ${lang === "es" ? "opacity-100" : "opacity-40"}`}
+    aria-label="Cambiar a Español"
+  >
+    ES
+  </a>
+  <span class="opacity-30">/</span>
+  <a
+    href={enPath}
+    class={`font-bold transition-opacity hover:opacity-100 ${lang === "en" ? "opacity-100" : "opacity-40"}`}
+    aria-label="Switch to English"
+  >
+    EN
+  </a>
+</div>

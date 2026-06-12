@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { content as siteContent, CONTACT } from "../../i18n/ui";
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const steps = siteContent[lang].process;
+
+const servicesHref = lang === "es" ? "/services" : "/en/services";
+const blogBase = lang === "es" ? "/blog/" : "/en/blog/";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout
+  title={t("meta.home.title")}
+  description={t("meta.home.description")}
+  sideBarActiveItemID="home"
+>
+  <!-- Hero -->
+  <div class="pb-10 mt-5">
+    <div class="text-xl py-1">{t("hero.greeting")}</div>
+    <div class="text-5xl font-bold">{t("hero.name")}</div>
+    <div class="text-2xl py-3 font-bold text-primary">{t("hero.tagline")}</div>
+    <p class="py-2 text-lg max-w-2xl opacity-90">{t("hero.valueProp")}</p>
+    <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-start">
+      <a
+        href={CONTACT.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary"
+      >
+        <span class="nf nf-fa-whatsapp mr-1"></span>
+        {t("hero.ctaPrimary")}
+      </a>
+      <a href={servicesHref} class="btn btn-outline">
+        {t("hero.ctaSecondary")}
+      </a>
+    </div>
+  </div>
+
+  <!-- How I work -->
+  <div class="my-10">
+    <div class="text-3xl w-full font-bold mb-6">{t("process.title")}</div>
+    <div class="grid gap-4 md:grid-cols-3">
+      {
+        steps.map((step, i) => (
+          <div class="card bg-base-200 p-5 h-full">
+            <div class="text-3xl font-bold text-primary mb-2">{i + 1}</div>
+            <h3 class="font-bold text-lg mb-1">{step.title}</h3>
+            <p class="text-sm opacity-80">{step.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Latest from blog -->
+  {
+    last_posts.length > 0 && (
+      <>
+        <div>
+          <div class="text-3xl w-full font-bold mb-5 mt-10">
+            {t("blog.latestTitle")}
+          </div>
+        </div>
+        {last_posts.map((post) => (
+          <>
+            <HorizontalCard
+              title={post.data.title}
+              img={post.data.heroImage}
+              desc={post.data.description}
+              url={blogBase + createSlug(post.data.title, post.slug)}
+              target="_self"
+              badge={post.data.badge}
+            />
+            <div class="divider my-0" />
+          </>
+        ))}
+      </>
+    )
+  }
+</BaseLayout>

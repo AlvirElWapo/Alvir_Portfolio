@@ -2,23 +2,23 @@
 import SideBarFooter from "./SideBarFooter.astro";
 import { Image } from "astro:assets";
 import SideBarMenu from "./SideBarMenu.astro";
+import LanguageToggle from "./LanguageToggle.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
 const { sideBarActiveItemID } = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
 
 const currentRoute = Astro.url.pathname;
+const isCvRoute = currentRoute === "/cv" || currentRoute === "/en/cv";
 ---
-<script>
-  const currentRoute = window.location.pathname;
-</script>
-
 
 <div class="drawer-side z-40">
   <label for="my-drawer" class="drawer-overlay"></label>
   <aside class="px-2 pt-2 h-auto min-h-full w-[15rem] bg-base-200 text-base-content flex flex-col">
-    <!-- Only show the avatar if the route is NOT '/cv' -->
-    {currentRoute !== "/cv" && (
+    <!-- Only show the avatar if we're NOT on the CV route -->
+    {!isCvRoute && (
     <div class="mx-auto mt-5 mb-6">
-      <a href="/">
-
+      <a href={lang === "es" ? "/" : "/en/"}>
         <div class="avatar transition ease-in-out hover:scale-[125%] hover-coin-spin block m-auto">
           <div class="w-[12rem] h-[12rem]">
             <Image
@@ -27,15 +27,15 @@ const currentRoute = Astro.url.pathname;
             width={300}
             height={300}
             src="/portfolio_pp_alt.png"
-            alt="Profile image"
+            alt="Andrés Alvir"
             />
           </div>
         </div>
-
       </a>
     </div>
     )}
-    <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
-    <SideBarFooter />
+    <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} lang={lang} />
+    <LanguageToggle lang={lang} />
+    <SideBarFooter lang={lang} />
   </aside>
 </div>

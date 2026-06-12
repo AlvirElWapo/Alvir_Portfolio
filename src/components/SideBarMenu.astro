@@ -1,86 +1,62 @@
 ---
-const { sideBarActiveItemID } = Astro.props;
-const activeClass = "bg-base-300"; 
-const currentRoute = Astro.url.pathname;
-const isActive = (path) => currentRoute === path;
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { CONTACT } from "../i18n/ui";
 
+const { sideBarActiveItemID } = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const prefix = lang === "es" ? "" : "/en";
+
+const items = [
+  { id: "home", label: t("nav.home"), href: `${prefix}/` || "/", icon: "nf-fa-home" },
+  { id: "services", label: t("nav.services"), href: `${prefix}/services`, icon: "nf-md-briefcase" },
+  { id: "cv", label: t("nav.cv"), href: `${prefix}/cv`, icon: "nf-md-file_document_multiple" },
+  { id: "blog", label: t("nav.blog"), href: `${prefix}/blog/`, icon: "nf-md-book_account" },
+];
+
+const homeHref = lang === "es" ? "/" : "/en/";
 ---
 
 <ul class="menu grow shrink menu-md overflow-y-auto">
-  <li>
-    <a
-      href="/"
-      class={`py-3 text-base flex items-center gap-3 group
-        ${isActive("/") ? "bg-base-300" : ""}`}
-    >
-      <span class={`nf nf-fa-home text-2xl transition-transform duration-150
-        ${isActive("/") ? "scale-100" : "group-hover:scale-150"}`}
-      ></span>
-
-      <span class={`transition-all duration-300
-        ${isActive("/") 
-          ? "opacity-100 translate-x-0 scale-125" 
-          : "opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
-        }`}
-      >
-        Home
-      </span>
-    </a>
-  </li>
-
-  <li>
-    <a
-      href="/cv"
-      class={`py-3 text-base flex items-center gap-3 group
-        ${isActive("/cv") ? "bg-base-300" : ""}`}
-    >
-      <span class={`nf nf-md-file_document_multiple text-2xl transition-transform duration-150
-        ${isActive("/cv") ? "scale-125" : "group-hover:scale-125"}`}
-      ></span>
-
-      <span class={`transition-all duration-300
-        ${isActive("/cv")
-          ? "opacity-100 translate-x-0"
-          : "opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
-        }`}
-      >
-        CV
-      </span>
-    </a>
-  </li>
+  {
+    items.map((item) => {
+      const href = item.id === "home" ? homeHref : item.href;
+      const active = sideBarActiveItemID === item.id;
+      return (
+        <li>
+          <a
+            href={href}
+            class={`py-3 text-base flex items-center gap-3 group ${active ? "bg-base-300" : ""}`}
+          >
+            <span
+              class={`nf ${item.icon} text-2xl transition-transform duration-150 ${active ? "scale-110" : "group-hover:scale-125"}`}
+            />
+            <span
+              class={`transition-all duration-300 ${
+                active
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-50 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
+              }`}
+            >
+              {item.label}
+            </span>
+          </a>
+        </li>
+      );
+    })
+  }
 
   <li>
     <a
-      href="/blog/"
-      class={`py-3 text-base flex items-center gap-3 group
-        ${isActive("/blog/") ? "bg-base-300" : ""}`}
-    >
-      <span class={`nf nf-md-book_account text-2xl transition-transform duration-150
-        ${isActive("/blog/") ? "scale-125" : "group-hover:scale-125"}`}
-      ></span>
-
-      <span class={`transition-all duration-300
-        ${isActive("/blog/")
-          ? "opacity-100 translate-x-0"
-          : "opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0"
-        }`}
-      >
-        Blog
-      </span>
-    </a>
-  </li>
-
-  <li>
-    <a
-      href="mailto:andresalvir13@gmail.com"
+      href={CONTACT.whatsapp}
       target="_blank"
-      referrerpolicy="no-referrer-when-downgrade"
+      rel="noopener noreferrer"
       class="py-3 text-base flex items-center gap-3 group"
     >
-      <span class="nf nf-md-mailbox_open_up text-2xl transition-transform duration-150 group-hover:scale-125"></span>
-
-      <span class="opacity-25 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-        Contact
+      <span class="nf nf-fa-whatsapp text-2xl transition-transform duration-150 group-hover:scale-125"></span>
+      <span class="opacity-50 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+        {t("nav.contact")}
       </span>
     </a>
   </li>

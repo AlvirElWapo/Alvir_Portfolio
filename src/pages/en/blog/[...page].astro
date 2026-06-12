@@ -1,5 +1,5 @@
 ---
-import BlogList from "../../components/sections/BlogList.astro";
+import BlogList from "../../../components/sections/BlogList.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }) {
@@ -11,4 +11,4 @@ export async function getStaticPaths({ paginate }) {
 const { page } = Astro.props;
 ---
 
-<BlogList page={page} lang="es" />
+<BlogList page={page} lang="en" />

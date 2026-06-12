@@ -9,8 +9,16 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astrofy-template.netlify.app',
-  integrations: [mdx(), sitemap(), tailwind(), 
+  // TODO(Andrés): set this to your real deploy domain.
+  site: 'https://alvirportfolio.netlify.app',
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  integrations: [mdx(), sitemap(), tailwind(),
     icon({
         iconDir: "src/icons",
     })

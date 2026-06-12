@@ -1,0 +1,186 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TimeLineElement from "../cv/TimeLine.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import imported_image from "../../assets/images/image_cv_updated.webp";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { content as siteContent } from "../../i18n/ui";
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const c = siteContent[lang];
+
+const programmingLanguages = [
+  { name: "JavaScript", icon: "javascript" },
+  { name: "Python", icon: "python" },
+  { name: "Java", icon: "java" },
+  { name: "C#", icon: "csharp" },
+  { name: "Go", icon: "golang" },
+];
+const backend = [
+  { name: "NodeJs", icon: "node_icon" },
+  { name: "Django", icon: "django" },
+  { name: "Express", icon: "expressJS" },
+  { name: ".Net Core", icon: "net_core" },
+];
+const frontend = [
+  { name: "VueJS", icon: "vuejs" },
+  { name: "ReactJS", icon: "reactjs" },
+  { name: "Angular", icon: "angular" },
+  { name: "Bootstrap", icon: "bootstrap" },
+  { name: "TailwindCSS", icon: "tailwindcss" },
+];
+const databases = [
+  { name: "MySQL", icon: "mysql" },
+  { name: "PostgreSQL", icon: "postgres" },
+  { name: "ORACLE DB", icon: "oracledb" },
+  { name: "SQL Server", icon: "sqlserver" },
+];
+---
+
+<BaseLayout title={t("meta.cv.title")} sideBarActiveItemID="cv">
+  <div class="flex items-center justify-center">
+    <div class="avatar transition ease-in-out hover:scale-[150%] block m-auto">
+      <div class="w-[8.5rem]">
+        <Image
+          class="mask mask-circle"
+          format="webp"
+          width={500}
+          height={500}
+          src={imported_image}
+          alt="Andrés Alvir"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">{t("cv.profileTitle")}</div>
+  </div>
+
+  <div class="mb-10 text-justify space-y-3">
+    {c.cvProfile.map((p) => <p>{p}</p>)}
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">{t("cv.educationTitle")}</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    {
+      c.education.map((edu) => (
+        <TimeLineElement title={edu.title} subtitle={edu.subtitle} />
+      ))
+    }
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">{t("cv.experienceTitle")}</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    {
+      c.experience.map((exp) => (
+        <TimeLineElement title={exp.title} subtitle={exp.subtitle}>
+          <ul class="max-w-md space-y-1 list-disc list-inside">
+            {exp.bullets.map((b) => (
+              <li>{b}</li>
+            ))}
+          </ul>
+        </TimeLineElement>
+      ))
+    }
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">{t("cv.certsTitle")}</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    {
+      c.certs.map((cert) => (
+        <li>
+          {cert.name}
+          <br />
+          {cert.score}
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">{t("cv.skillsTitle")}</div>
+  </div>
+
+  <div class="text-1xl w-full font-bold">{t("cv.langsLabel")}</div>
+  <ul class="list-disc md:columns-3 columns-2 mx-6">
+    {
+      programmingLanguages.map((s) => (
+        <li style="display: flex; align-items: center; gap: 5px;">
+          <span>{s.name}</span>
+          <Icon name={s.icon} style="width: 20px; height: 20px;" />
+        </li>
+      ))
+    }
+  </ul>
+  <br /><br />
+
+  <div class="text-1xl w-full font-bold">{t("cv.backendLabel")}</div>
+  <ul class="list-disc md:columns-3 columns-2 mx-6">
+    {
+      backend.map((s) => (
+        <li style="display: flex; align-items: center; gap: 5px;">
+          <span>{s.name}</span>
+          <Icon name={s.icon} style="width: 20px; height: 20px;" />
+        </li>
+      ))
+    }
+  </ul>
+  <br /><br />
+
+  <div class="text-1xl w-full font-bold">{t("cv.frontendLabel")}</div>
+  <ul class="list-disc md:columns-3 columns-2 mx-6">
+    {
+      frontend.map((s) => (
+        <li style="display: flex; align-items: center; gap: 5px;">
+          <span>{s.name}</span>
+          <Icon name={s.icon} style="width: 20px; height: 20px;" />
+        </li>
+      ))
+    }
+  </ul>
+  <br /><br />
+
+  <div class="text-1xl w-full font-bold">{t("cv.dbLabel")}</div>
+  <ul class="list-disc md:columns-3 columns-2 mx-6">
+    {
+      databases.map((s) => (
+        <li style="display: flex; align-items: center; gap: 5px;">
+          <span>{s.name}</span>
+          <Icon name={s.icon} style="width: 20px; height: 20px;" />
+        </li>
+      ))
+    }
+  </ul>
+  <br /><br />
+
+  <div class="text-1xl w-full font-bold">{t("cv.sysadminLabel")}</div>
+  <ul class="list-disc md:columns-1 columns-1 mx-6">
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span>{t("cv.sysadmin1")}</span>
+      <Icon name="archlinux" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span>{t("cv.sysadmin2")}</span>
+      <Icon name="aws" style="width: 20px; height: 20px;" />
+      <Icon name="googlecloud" style="width: 20px; height: 20px;" />
+      <Icon name="linode" style="width: 20px; height: 20px;" />
+    </li>
+    <li style="display: flex; align-items: center; gap: 5px;">
+      <span>{t("cv.sysadmin3")}</span>
+      <Icon name="docker" style="width: 20px; height: 20px;" />
+      <Icon name="kubernetes" style="width: 20px; height: 20px;" />
+    </li>
+  </ul>
+</BaseLayout>

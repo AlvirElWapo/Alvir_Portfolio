@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const today = new Date();
 ---
 
@@ -6,8 +10,8 @@ const today = new Date();
   <div class="pb-2">
     &copy; {today.getFullYear()} Andrés Alvir Guzmán
   </div>
-  <div class="inline opacity-75">
-    <a href="https://astrofy-template.netlify.app/" target="_blank" class="font-bold">Astrofy Template ⚡️</a>
+  <div class="inline opacity-75 text-sm">
+    {t("footer.tagline")}
   </div>
 </footer>
 <style></style>
